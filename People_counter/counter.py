@@ -137,7 +137,7 @@ while True:
                     # adding the bounding box coordinates
                     rects.append((startY, startX, endY + startY, endX + startX))
             # drawing the horizontal line
-            
+            cv2.line(frame, (0, H // 2), (W, H // 2), (0, 0, 0), 3)
 
             # using the centroid tracker to update old centroid with the newly computed ones
             objects = ct.update(rects)
@@ -174,7 +174,6 @@ while True:
                 trackableObjects[objectID] = to
 
                 # writing the object ID
-                cv2.line(frame, (0, H // 2), (W, H // 2), (0, 0, 0), 3)
                 text = "ID {}".format(objectID)
             
                 cv2.putText(frame, text, (centroid[0] - 10, centroid[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
@@ -192,6 +191,16 @@ while True:
             for (i, (k, v)) in enumerate(info):
                 text = "{}: {}".format(k, v)
                 cv2.putText(frame,text,(10, H - ((i * 20) + 20)),cv2.FONT_HERSHEY_SIMPLEX,0.6,(255, 255, 255),2,)
+
+                cv2.putText(
+                frame,
+                "-Prediction border--",
+                (10, H - ((20) + 200)),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.5,
+                (255, 255, 255),
+                1,
+            )
             
 
 
